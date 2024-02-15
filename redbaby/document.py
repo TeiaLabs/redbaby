@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timezone
 from typing import Any, Optional
 
@@ -27,10 +28,21 @@ class Document(BaseModel):
 
     @classmethod
     def collection(
-        cls, db_name: Optional[str] = None, suffix: Optional[str] = None
+        cls,
+        db_name: Optional[str] = None,
+        suffix: Optional[str] = None,
+        alias: str = "default",
     ) -> Collection:
-        return DB.get(db_name, suffix)[cls.collection_name()]
+        return DB.get(db_name, suffix, alias)[cls.collection_name()]
 
     @classmethod
     def indexes(cls) -> list[IndexModel]:
         return []
+
+    @classmethod
+    def create_indexes(cls, alias: str = "default"):
+        idx = cls.indexes()
+        if not idx:
+            logging.warning(f"No indexes for '{cls.collection_name()}'.")
+            return
+        cls.collection(alias=alias).create_indexes(idx)

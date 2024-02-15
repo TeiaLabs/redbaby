@@ -7,6 +7,7 @@ from pymongo import IndexModel
 from pymongo.collection import Collection
 
 from .database import DB
+from .utils import PyObjectId
 
 
 class Document(BaseModel):
@@ -16,9 +17,8 @@ class Document(BaseModel):
 
     def bson(self) -> dict[str, Any]:
         obj = self.model_dump(by_alias=True)
-        # obj["_id"] = ObjectId(obj["_id"])
-        obj["created_at"] = obj["created_at"].isoformat()
-        obj["updated_at"] = obj["updated_at"].isoformat()
+        if self.model_fields["_id"].default_factory is PyObjectId:
+            obj["_id"] = ObjectId(obj["_id"])
         return obj
 
     @classmethod

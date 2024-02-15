@@ -39,5 +39,5 @@ setuptools.setup(
     url="https://github.com/teialabs/redbaby",
     packages=setuptools.find_packages(),
     install_requires=requirements,
-    python_requires=">=3.12",
+    python_requires=">=3.11",
 )

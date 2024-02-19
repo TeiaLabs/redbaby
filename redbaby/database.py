@@ -52,8 +52,6 @@ class DB:
 
 
 DB.add_conn(
-    **{
-        "db_name": "redbaby",
-        "uri": "mongodb://localhost:27017",
-    }
+    db_name="redbaby",
+    uri="mongodb://localhost:27017",
 )

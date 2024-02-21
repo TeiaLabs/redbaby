@@ -1,3 +1,5 @@
 pydantic
 pydantic-settings
 pymongo
+compose
+compose-stubs

@@ -8,15 +8,10 @@ from pymongo import IndexModel
 from pymongo.collection import Collection
 
 from ..database import DB
-from ..utils import PyObjectId
+from ..pyobjectid import PyObjectId
 
 
 class BaseDocument(BaseModel):
-
-    @computed_field()
-    @property
-    def _id(self) -> str:
-        raise NotImplementedError
 
     def bson(self) -> dict[str, Any]:
         obj = self.model_dump(by_alias=True)

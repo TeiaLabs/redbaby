@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from .behaviors.pyobjectid import PyObjectId
+from ..pyobjectid import PyObjectId
 
 
 class ObjectIdDoc(BaseModel):

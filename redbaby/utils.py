@@ -3,6 +3,15 @@ from typing import Optional
 from bson.objectid import ObjectId as BsonObjectId
 
 
+def cat(*args: str, delimiter: str = "|") -> str:
+    """
+
+    >>> cat("foo", "bar", "baz")
+    "foo|bar|baz"
+    """
+    return delimiter.join(args)
+
+
 def get_root_dir(path: str) -> Optional[str]:
     """
     Get the root folder name from a path-like string.

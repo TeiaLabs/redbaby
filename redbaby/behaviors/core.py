@@ -1,9 +1,8 @@
 import logging
-from datetime import datetime, timezone
 from typing import Any, Optional
 
 from bson import ObjectId
-from pydantic import BaseModel, Field, computed_field
+from pydantic import BaseModel
 from pymongo import IndexModel
 from pymongo.collection import Collection
 

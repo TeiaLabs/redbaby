@@ -25,4 +25,5 @@ def test_id_use():
     assert from_dumped.id == doc.id
     construct_model = TDoc1.model_construct(**dumped, ass=1)
     assert construct_model.id == doc.id
+    assert TDoc1(attr=2).id != doc.id
     # TODO: find a way to avoid recalculating the hash everytime

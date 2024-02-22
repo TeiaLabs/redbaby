@@ -6,7 +6,7 @@ from ..hashing import HashDigest, get_hash
 from ..utils import cat
 
 
-class HashIdDoc(BaseModel):
+class HashIdMixin(BaseModel):
 
     @computed_field(alias="_id", repr=True)
     @cached_property

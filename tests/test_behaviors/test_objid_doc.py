@@ -1,12 +1,10 @@
 import json
 
-from bson import ObjectId
-
-from redbaby.behaviors.objectids import ObjectIdDoc
+from redbaby.behaviors import ObjectIdMixin
 from redbaby.pyobjectid import PyObjectId
 
 
-class TDoc1(ObjectIdDoc):
+class TDoc1(ObjectIdMixin):
     attr: int
 
 

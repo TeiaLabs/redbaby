@@ -1,5 +1,4 @@
-from .behaviors.core import BaseDocument
-from .behaviors.timestamps import Timestamping
+from .behaviors import BaseDocument, Timestamping
 
 
 class Document(BaseDocument, Timestamping):

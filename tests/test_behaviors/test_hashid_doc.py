@@ -1,12 +1,10 @@
-import json
-
 from pydantic import TypeAdapter
 
-from redbaby.behaviors.hashids import HashIdDoc
+from redbaby.behaviors import HashIdMixin
 from redbaby.hashing import HashDigest
 
 
-class TDoc1(HashIdDoc):
+class TDoc1(HashIdMixin):
     attr: int
 
     def hashable_fields(self) -> list[str]:

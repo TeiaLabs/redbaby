@@ -1,7 +1,5 @@
 from typing import Optional
 
-from bson.objectid import ObjectId as BsonObjectId
-
 
 def cat(*args: str, delimiter: str = "|") -> str:
     """

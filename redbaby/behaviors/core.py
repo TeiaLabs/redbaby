@@ -1,22 +1,17 @@
 import logging
 from typing import Any, Optional
 
-from bson import ObjectId
 from pydantic import BaseModel
 from pymongo import IndexModel
 from pymongo.collection import Collection
 
 from ..database import DB
-from ..pyobjectid import PyObjectId
 
 
 class BaseDocument(BaseModel):
 
     def bson(self) -> dict[str, Any]:
-        obj = self.model_dump(by_alias=True)
-        if "_id" in self.model_fields:
-            if self.model_fields["_id"].default_factory is PyObjectId:
-                obj["_id"] = ObjectId(obj["_id"])
+        obj = self.model_dump(by_alias=True, mode="python")
         return obj
 
     @classmethod

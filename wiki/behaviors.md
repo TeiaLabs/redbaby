@@ -1,0 +1,5 @@
+- Teia Redbaby Behaviors
+  - authoring: created_by, updated_by
+- General behaviors
+  - versioning: name:version
+  - auditing

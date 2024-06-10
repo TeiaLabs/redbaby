@@ -2,6 +2,7 @@ from typing import Any
 
 from bson import ObjectId
 from pydantic import GetCoreSchemaHandler
+from pydantic.json_schema import JsonSchemaValue
 from pydantic_core import core_schema
 
 
@@ -37,3 +38,7 @@ class PyObjectId(ObjectId):
             raise ValueError(f"'{value}' is not a valid bson.ObjectId.")
 
         return ObjectId(value)
+
+    @classmethod
+    def __get_pydantic_json_schema__(cls, _core_schema, handler) -> JsonSchemaValue:
+        return handler(core_schema.str_schema())

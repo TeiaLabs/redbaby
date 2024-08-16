@@ -3,6 +3,8 @@ from typing import Optional, TypedDict
 from pymongo import MongoClient
 from pymongo.database import Database
 
+from .errors import ClientNotFoundError, ConnectionNotFoundError
+
 
 class MongoConnection(TypedDict):
     db_name: str
@@ -28,7 +30,10 @@ class DB:
 
     @classmethod
     def get_client(cls, alias: str = "default") -> MongoClient:
-        return cls.clients[alias]
+        try:
+            return cls.clients[alias]
+        except KeyError:
+            raise ClientNotFoundError(alias)
 
     @classmethod
     def add_client(cls, alias: str = "default") -> MongoClient:
@@ -36,7 +41,10 @@ class DB:
 
     @classmethod
     def get_conn(cls, alias: str = "default") -> MongoConnection:
-        return cls.connections[alias]
+        try:
+            return cls.connections[alias]
+        except KeyError:
+            raise ConnectionNotFoundError(alias)
 
     @classmethod
     def add_conn(

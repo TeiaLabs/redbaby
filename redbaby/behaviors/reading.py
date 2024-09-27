@@ -1,7 +1,4 @@
-from functools import partial
 from typing import Any, Iterable, Literal, Optional, Self, Sequence, overload
-
-from pymongo.cursor import CursorType
 
 from .core import BaseDocument
 
@@ -72,9 +69,6 @@ class ReadingMixin(BaseDocument):
         sort: Optional[Sequence[tuple[str, int]]] = None,
         alias: str = "default",
     ):
-        cursor_type = (
-            CursorType.NON_TAILABLE if lazy or limit != 0 else CursorType.EXHAUST
-        )
         col = cls.collection(alias=alias)
         cursor = col.find(
             filter=filter,
@@ -82,7 +76,6 @@ class ReadingMixin(BaseDocument):
             skip=skip,
             limit=limit,
             sort=sort,
-            cursor_type=cursor_type,
         )
         # TODO cache cursor when skip is not None
         validate_doc = cls.model_validate if validate else lambda x: x
